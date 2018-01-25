@@ -3,7 +3,8 @@ export const GET_COUNTRY = 'GET_COUNTRY';
 export const DELETE_COUNTRY = 'DELETE_COUNTRY';
 export const SEARCH_COUNTRIES = 'SEARCH_COUNTRIES';
 export const SET_CONTINENT = 'SET_CONTINENT';
-
+export const FILTER_COUNTRIES = 'FILTER_COUNTRIES';
+export const SHOW_PAGE = 'SHOW_PAGE'
 
 export function getCountries() {
     return {
@@ -36,5 +37,19 @@ export function setContinent(name) {
     return {
         type: SET_CONTINENT,
         name
+    }
+}
+
+export function filterCountries(numberOfCountriesOnEachPage) {
+    return {
+        type: FILTER_COUNTRIES,
+        numberOfCountriesOnEachPage
+    }
+}
+
+export function showPage(page) {
+    return {
+        type: SHOW_PAGE,
+        page
     }
 }
