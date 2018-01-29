@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setContinent, deleteCountry } from '../actions/actions-countries';
 import CountryFlagList from '../presentational/flag-list.component';
+import {elementsToShow} from './flag-container.component.js';
 
 class ContinentsContainer extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class ContinentsContainer extends Component {
         this.props.dispatch(setContinent('Europa'));
     }
 
+
     render() {
         return (
             <div>
@@ -27,7 +29,7 @@ class ContinentsContainer extends Component {
                     <option value="Europa">Europa</option>
                     <option value="Afryka">Afryka</option>
                 </select>
-                <CountryFlagList countries={this.props.visibleCountries} deleteCountry={this.deleteCountry.bind(this)} />
+                <CountryFlagList countries={elementsToShow(this.props.visibleCountries, this.props.numberOfThisPage, this.props.numberOfCountriesOnEachPage)} deleteCountry={this.deleteCountry.bind(this)} />
             </div>
         )
     }
@@ -35,7 +37,9 @@ class ContinentsContainer extends Component {
 
 const mapStateToProps = function (store) {
     return {
-        visibleCountries: store.countriesReducer.visibleCountries
+        visibleCountries: store.countriesReducer.visibleCountries,
+        numberOfThisPage: store.countriesReducer.page,
+        numberOfCountriesOnEachPage: store.countriesReducer.numberOfCountriesOnEachPage 
     };
 };
 

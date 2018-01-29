@@ -7,17 +7,19 @@ import NotFound from './presentational/not-found.component';
 import CountryFlagContainer from './containers/flag-container.component';
 import CountryDetailsContainer from './containers/country-detail-container.component';
 import ContinentsContainer from './containers/continents-container.component';
-
+import FilterPages from './containers/filter-pages-container.js';
 
 export default (
     <Route path='/' component={Navigation}>
         <IndexRoute component={Home}/>
-        <Route path='countries' >
-            <IndexRoute component={CountryFlagContainer}/>
-            <Route path='country/:id' component={CountryDetailsContainer}/>
+        <Route component={FilterPages}>
+            <Route path='countries' >
+                <IndexRoute component={CountryFlagContainer}/>
+                <Route path='country/:id' component={CountryDetailsContainer}/>
+            </Route>
+            <Route path='continents' component={ContinentsContainer}/>
+            <Route path='contact' component={Contact}/>
+            <Route path='*' component={NotFound}/>
         </Route>
-        <Route path='continents' component={ContinentsContainer}/>
-        <Route path='contact' component={Contact}/>
-        <Route path='*' component={NotFound}/>
     </Route>
 );
